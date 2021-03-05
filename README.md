@@ -14,7 +14,7 @@ Tenc Tech provides you useful technical stuffs about web development, programmin
 
 2. Can I write articles for Tenc tech?
 
-    Currently, Tenc Tech is solely written and managed by me. In future there is an idea of extending for guest articles.
+    Currently, Tenc Tech is solely written and managed by staff users. In future there is an idea of extending for other users.
 
 3. Can I share your articles on facebook?
 
