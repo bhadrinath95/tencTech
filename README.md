@@ -10,16 +10,16 @@ Tenc Tech provides you useful technical stuffs about web development, programmin
 
 1. How do I subsribe to Tenc tech?
 
-You can sign  up for Tech tech through [Register](http://tenctech.pythonanywhere.com/accounts/register/) page.
+    You can sign  up for Tech tech through [Register](http://tenctech.pythonanywhere.com/accounts/register/) page.
 
 2. Can I write articles for Tenc tech?
 
-Currently, Tenc Tech is solely written and managed by me. In future there is an idea of extending for guest articles.
+    Currently, Tenc Tech is solely written and managed by me. In future there is an idea of extending for guest articles.
 
 3. Can I share your articles on facebook?
 
-Yes!  you are permitted to share the article in facebook by clicking on share icon available in blog post.
+    Yes!  you are permitted to share the article in facebook by clicking on share icon available in blog post.
 
 4. I have a suggestion or  question. How can I reach you?
 
-If you have a suggestion or question, you can send me an email at bhadrivetry95@gmail.com.
+    If you have a suggestion or question, you can send me an email at bhadrivetry95@gmail.com.
