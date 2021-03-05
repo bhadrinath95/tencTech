@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tenc Tech{% endblock %}</title>
+    <!-- BS5 CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+    <!-- Jquery -->
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+    <!-- BS5 JS -->
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+<style>
+.img-responsive { 
+    width:100%;
+}
+</style>
+<style>
+{% block style %}{% endblock style %}
+</style>
+{% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+{% include "messages_display.html" %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<a class="navbar-brand" href="/">TENC TECH</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href='{% url "posts:display" %}'>Home</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href='{% url "logout" %}'>Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            	<a class="nav-link" href='{% url "register" %}'>Register</a>
+            </li><li class="nav-item">
+                <a class="nav-link" href='{% url "login" %}'>Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+</nav>
+	
+
+{% block content %}
+
+{% endblock content %}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+	
+	$(".comment-reply-btn").click(function(){
+		$(".comment-reply").fadeToggle();
+	})
+	
+	$(".content-markdown").each(function(){
+		var content = $(this).text()
+		var markedContent = marked(content)
+		$(this).html(markedContent)
+	})
+	$(".post-detail-item img").each(function(){
+		$(this).addClass("img-responsive")
+	})
+	
+	var contentInput = $("#wmd-input-id_content");
+	
+	function setContent(value) {
+		var markedContent = marked(value)
+		$("#preview-content").html(markedContent)
+		$("#preview-content img").each(function(){
+			$(this).addClass("img-responsive")
+		})
+	}
+	setContent(contentInput.val())
+	contentInput.keyup(function(){
+		var newContent = $(this).val();
+		setContent(newContent)
+	})
+	
+	var titleInput = $("#id_title");
+	
+	function setTitle(value) {
+		console.log(value)
+		$("#preview-title").text(value);
+	}
+	
+	setTitle(titleInput.val())
+	
+	titleInput.keyup(function(){
+		var newContent = $(this).val();
+		setTitle(newContent)
+	})
+	
+	
+})
+
+</script>
+</body>
+</html>
+
