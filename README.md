@@ -4,7 +4,7 @@ Tenc Tech provides you useful technical stuffs about web development, programmin
 
 ## Web Link
 
-[Tenc Tech](TencTech.pythonanywhere.com)
+[Tenc Tech](http://tenctech.pythonanywhere.com)
 
 ## FAQs
 
