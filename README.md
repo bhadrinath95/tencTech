@@ -15,7 +15,7 @@ o Users of the Tenc Tech application can perform the following actions:<br />
 • Share the blog post on Facebook.<br />
 • Post comments to the blog post.<br />
 
-o The staff users of the Tenc Tech can perform the following actions:
+o The staff users of the Tenc Tech can perform the following actions:<br />
 • Create the blog post<br />
 • The blog can contain blog title, bog tags, blog description, publish date, and image or reference links if required.<br />
 • To enhance look and feel, blog descriptions are created in markdown.<br />
