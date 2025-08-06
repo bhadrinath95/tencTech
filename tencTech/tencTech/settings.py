@@ -26,7 +26,7 @@ SECRET_KEY = '@r!q@5yw1=9$y$3%czo5hd(#v9g8j)h)oww6^(iow_h-3dn6!b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bhadrisocial.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
