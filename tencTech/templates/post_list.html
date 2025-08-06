@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 
+{% block style %}
+.media-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* or any fixed size */
+    aspect-ratio: 1 / 1; /* ensures square shape */
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.media-container img,
+.media-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* crop to fill container while maintaining aspect */
+    display: block;
+}
+{% endblock style %}
+
 {% block content %}
 
 <main class="container mt-3">
@@ -20,8 +40,17 @@
 {% for obj in object_list %}
 <div class="col-sm-12"> <!-- column 1 -->
 	<div class="thumbnail"> <!--  thumbnail 1  -->
-		{% if obj.image %}
-			<img src='{{ obj.image.url }}' class='img-responsive' />
+		{% if obj.media_url %}
+		<div class="media-container">
+			{% if obj.is_image %}
+			<img src="https://raw.githubusercontent.com/tenctech10c/Images/main/{{ obj.media_url }}" alt="Media">
+			{% else %}
+			<video controls>
+				<source src="https://raw.githubusercontent.com/tenctech10c/Videos/main/{{ obj.media_url }}" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			{% endif %}
+		</div>
 		{% endif %}
 		<div class="caption post-detail-item"> <!-- caption -->
 			{% if obj.draft %}<span style='color:red'><h3>Staff only: Draft </h3>{% if obj.publish > today %}<h3>Staff only: Future Post</h3>{% endif %}</span>{% endif %} 

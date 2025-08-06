@@ -7,13 +7,39 @@
 h1 {
 	color: #777778;
 }
+.media-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* or any fixed size */
+    aspect-ratio: 1 / 1; /* ensures square shape */
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.media-container img,
+.media-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* crop to fill container while maintaining aspect */
+    display: block;
+}
 {% endblock style %}
 
 {% block content %}
 <main class="container mt-3">
 <div class='col-sm-8 col-sm-offset-3'>
-	{% if instance.image %}
-		<img src='{{ instance.image.url }}' class='img-responsive' />
+	{% if instance.media_url %}
+	<div class="media-container">
+		{% if instance.is_image %}
+		<img src="https://raw.githubusercontent.com/tenctech10c/Images/main/{{ instance.media_url }}" alt="Media">
+		{% else %}
+		<video controls>
+			<source src="https://raw.githubusercontent.com/tenctech10c/Videos/main/{{ instance.media_url }}" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+		{% endif %}
+	</div>
 	{% endif %}
 	<h1>{{ instance.title }} 
 		<small> 

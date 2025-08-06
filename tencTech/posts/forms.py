@@ -11,7 +11,8 @@ class PostForm(forms.ModelForm):
         fields = [
                 "title",
                 "content",
-                "image",
+                "media_url",
+                "is_image",
                 "draft",
                 "publish"
             ]

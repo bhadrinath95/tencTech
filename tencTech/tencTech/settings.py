@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pagedown.apps.PagedownConfig',
     'crispy_forms',
+    'crispy_bootstrap3',
     'markdown_deux',
     'posts',
     'comments'
@@ -145,3 +146,5 @@ EMAIL_HOST_USER = 'softwaregurukulam@gmail.com'
 EMAIL_HOST_PASSWORD = 'Bhadri@1007'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'TENC TECH'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
