@@ -26,6 +26,7 @@ class Post(models.Model):
     media_url = models.CharField(max_length=120, null=True, blank=True)
     is_image = models.BooleanField(default=True)
     content = models.TextField()
+    is_html = models.BooleanField(default=False)
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
     read_time = models.IntegerField(default=False)

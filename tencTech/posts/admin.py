@@ -3,7 +3,7 @@ from .models import Post
 
 # Register your models here.
 class Post_Admin(admin.ModelAdmin):
-    list_display=["user","title","slug","media_url","is_image","content","draft","publish","read_time","updated","timestamp"]
+    list_display=["user","title","slug","media_url","is_image","content","is_html","draft","publish","read_time","updated","timestamp"]
     
     class Meta:
         model = Post

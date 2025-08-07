@@ -60,10 +60,14 @@
 			{% else %}
 			<p>Author: {{ obj.user }} </p>
 			{% endif %}
-			
-			<!-- <p class='content-markdown'> -->
-			{{ obj.get_markdown | truncatechars_html:120 }}<!-- {{ obj.content|linebreaks|truncatechars:120 }} -->
-			
+
+			{% if instance.is_html %}
+			<p class='content-markdown'>
+				{{ obj.content | linebreaks | safe | truncatechars:120 }}
+			</p>
+			{% else %}
+			{{ obj.get_markdown | truncatechars_html:120 }}
+			{% endif %}
 			<p><a href='{% url "posts:detail" obj.id %}' class="btn btn-primary" role="button">View</a></p>  
 		</div>
 	</div>

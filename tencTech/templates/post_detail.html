@@ -63,9 +63,11 @@ h1 {
 	<hr />
 	<div class='row'>
 		<div class='col-sm-12'>
-		<!-- <div class='content-markdown'> -->
-		<div class='post-detail-item'>{{ instance.get_markdown }}</div> <!-- {{ instance.content|linebreaks|safe }} -->
-		
+		{% if instance.is_html %}
+		<div class='content-markdown'>{{ instance.content|linebreaks|safe }}</div>
+		{% else %}
+		<div class='post-detail-item'>{{ instance.get_markdown }}</div>
+		{% endif %}
 		<!-- {{ instance.comments.all }} -->
 		<hr /><br />
 		<div>
