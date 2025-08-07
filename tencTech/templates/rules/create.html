@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+<main class="container mt-3">
+    <div class='row'>
+        <h2>Create Rule</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <a href="{% url 'posts:display_rule' %}">Back</a>
+    </div>
+</main>
 
-<h2>Create Rule</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-<a href="{% url 'posts:display_rule' %}">Back</a>
 
 
 {% endblock content %}

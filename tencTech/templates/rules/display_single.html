@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<main class="container mt-3">
+    <div class='row'>
+        <h2>Rule Details</h2>
+        <p><strong>ID:</strong> {{ rule.r_id }}</p>
+        <p><strong>Description:</strong> {{ rule.discription }}</p>
+        <a href="{% url 'posts:display_rule' %}">Back to list</a>
+    </div>
+</main>
 
-<h2>Rule Details</h2>
-<p><strong>ID:</strong> {{ rule.r_id }}</p>
-<p><strong>Description:</strong> {{ rule.discription }}</p>
-<a href="{% url 'posts:display_rule' %}">Back to list</a>
 
 {% endblock content %}

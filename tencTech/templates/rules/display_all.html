@@ -3,7 +3,6 @@
 <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 10px; /* Adds space around the entire body */
             background-color: #f9f9f9;
         }
         table {
@@ -27,41 +26,47 @@
     </style>
 {% endblock style %}
 {% block content %}
-<h2 style="text-align:center;">List of Rules</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Rule ID</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for rule in rules %}
-        <tr>
-            <td>{{ rule.id }}</td>
-            <td>{{ rule.r_id }}</td>
-            <td>{{ rule.discription }}</td>
-            <td>
-                <a href="{% url 'posts:update_rule' rule.id %}">Edit</a>
-                <a href="{% url 'posts:delete_rule' rule.id %}">Delete</a>
-                <a href="{% url 'posts:display_rule_single' rule.id %}">View</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" style="text-align:center;">No rules available.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<br />
-<div style="text-align:center;">
+<main class="container mt-3">
+    <div class='row'>
+    <h2 style="text-align:center;">List of Rules</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Rule ID</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule in rules %}
+                <tr>
+                    <td>{{ rule.id }}</td>
+                    <td>{{ rule.r_id }}</td>
+                    <td>{{ rule.discription }}</td>
+                    <td>
+                        <a href="{% url 'posts:update_rule' rule.id %}">Edit</a>
+                        <a href="{% url 'posts:delete_rule' rule.id %}">Delete</a>
+                        <a href="{% url 'posts:display_rule_single' rule.id %}">View</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align:center;">No rules available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <br />
+    </div>
+    <div class='row' style="text-align:left;">
     <a href="{% url 'posts:create_rule' %}">Create New Rule</a>
     <a href="https://forms.gle/G2CGEu6VStAdgWb26">New Track Record</a>
-</div>
+    </div>
 <br />
+
+</main>
+
+
 
 {% endblock content %}

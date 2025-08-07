@@ -2,14 +2,17 @@
 
 {% block content %}
 
-<h2>Update Rule</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-</form>
-<a href="{% url 'posts:display_rule' %}">Back</a>
-
+<main class="container mt-3">
+    <div class='row'>
+        <h2>Update Rule</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+        </form>
+        <a href="{% url 'posts:display_rule' %}">Back</a>
+    </div>
+</main>
 
 
 {% endblock content %}
