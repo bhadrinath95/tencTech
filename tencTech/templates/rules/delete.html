@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Delete Rule</h2>
+<p>Are you sure you want to delete "{{ rule }}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirm Delete</button>
+</form>
+<a href="{% url 'posts:display_rule' %}">Cancel</a>
+
+{% endblock content %}

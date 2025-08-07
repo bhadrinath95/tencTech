@@ -81,3 +81,10 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.read_time = read_time_var
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
+class Rule(models.Model):
+    r_id = models.CharField(max_length=120)
+    discription = models.CharField(max_length=120)
+
+    def __str__(self):
+        return f"{self.r_id}_{self.discription}"

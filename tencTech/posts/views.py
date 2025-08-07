@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from urllib.parse import quote_plus 
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post, Rule
+from .forms import PostForm, RuleForm  
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
@@ -143,3 +143,38 @@ def posts_delete(request , id= None):
     instance.delete()
     messages.success(request, "Successfully Deleted")
     return redirect("posts:display")
+
+def display_rule(request, id=None):
+    if id:
+        rule = get_object_or_404(Rule, id=id)
+        return render(request, 'rules/display_single.html', {'rule': rule})
+    rules = Rule.objects.all()
+    return render(request, 'rules/display_all.html', {'rules': rules})
+
+def create_rule(request):
+    if request.method == 'POST':
+        form = RuleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:display_rule')
+    else:
+        form = RuleForm()
+    return render(request, 'rules/create.html', {'form': form})
+
+def delete_rule(request, id):
+    rule = get_object_or_404(Rule, id=id)
+    if request.method == 'POST':
+        rule.delete()
+        return redirect('posts:display_rule')
+    return render(request, 'rules/delete.html', {'rule': rule})
+
+def update_rule(request, id):
+    rule = get_object_or_404(Rule, id=id)
+    if request.method == 'POST':
+        form = RuleForm(request.POST, instance=rule)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:display_rule')
+    else:
+        form = RuleForm(instance=rule)
+    return render(request, 'rules/update.html', {'form': form, 'rule': rule})

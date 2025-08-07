@@ -1,6 +1,6 @@
 from django import forms
 from pagedown.widgets import PagedownWidget
-from .models import Post
+from .models import Post, Rule
 from pagedown.settings import SHOW_PREVIEW
 
 class PostForm(forms.ModelForm):
@@ -16,4 +16,8 @@ class PostForm(forms.ModelForm):
                 "draft",
                 "publish"
             ]
-    
+
+class RuleForm(forms.ModelForm):
+    class Meta:
+        model = Rule
+        fields = ['r_id', 'discription']

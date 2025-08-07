@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Rule Details</h2>
+<p><strong>ID:</strong> {{ rule.r_id }}</p>
+<p><strong>Description:</strong> {{ rule.discription }}</p>
+<a href="{% url 'posts:display_rule' %}">Back to list</a>
+
+{% endblock content %}
