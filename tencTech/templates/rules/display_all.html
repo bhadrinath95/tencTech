@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block style %}
 <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px; /* Adds space around the entire body */
+            background-color: #f9f9f9;
+        }
         table {
             width: 70%;
             border-collapse: collapse;
@@ -53,8 +58,9 @@
     </tbody>
 </table>
 <br />
-<div style="text-align:left;">
+<div style="text-align:center;">
     <a href="{% url 'posts:create_rule' %}">Create New Rule</a>
+    <a href="https://forms.gle/G2CGEu6VStAdgWb26">New Track Record</a>
 </div>
 <br />
 
