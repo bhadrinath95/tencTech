@@ -5,7 +5,7 @@ app_name = 'posts'
 
 urlpatterns = [
     path('', views.posts_list, name='display'),
-    path('create/', views.posts_create),
+    path('create/', views.posts_create, name = 'create'),
     re_path('(?P<id>\d+)/edit/', views.posts_update, name = 'update'),
     re_path('(?P<id>\d+)/delete/', views.posts_delete),
     re_path('(?P<id>\d+)', views.posts_detail,name='detail'),
