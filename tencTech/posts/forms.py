@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
                 "content",
                 "is_html",
                 "media_url",
-                "is_image",
+                "media_type",
                 "draft",
                 "publish"
             ]

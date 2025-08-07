@@ -20,11 +20,16 @@ class PostManager(models.Manager):
         return super(PostManager,self).filter(draft=False).filter(publish__lte=timezone.now())
 
 class Post(models.Model):
+    MEDIA_TYPE = [
+        ('image', 'image'),
+        ('video', 'video'),
+        ('youtube', 'youtube'),
+    ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     media_url = models.CharField(max_length=120, null=True, blank=True)
-    is_image = models.BooleanField(default=True)
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPE, default='image')
     content = models.TextField()
     is_html = models.BooleanField(default=False)
     draft = models.BooleanField(default=False)

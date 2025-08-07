@@ -16,13 +16,26 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-
 .media-container img,
 .media-container video {
     width: 100%;
     height: 100%;
     object-fit: cover; /* crop to fill container while maintaining aspect */
     display: block;
+}
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 560px; /* Optional: limits size */
+    padding-top: 100%; /* 1:1 Aspect Ratio (height = width) */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 {% endblock style %}
 
@@ -31,13 +44,24 @@ h1 {
 <div class='col-sm-8 col-sm-offset-3'>
 	{% if instance.media_url %}
 	<div class="media-container">
-		{% if instance.is_image %}
+		{% if instance.media_type == "image" %}
 		<img src="https://raw.githubusercontent.com/tenctech10c/Images/main/{{ instance.media_url }}" alt="Media">
-		{% else %}
+		{% elif instance.media_type == "video" %}
 		<video controls>
 			<source src="https://raw.githubusercontent.com/tenctech10c/Videos/main/{{ instance.media_url }}" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
+		{% elif instance.media_type == "youtube" %}
+			<div class="video-container">
+				<iframe 
+					src="https://www.youtube.com/embed/{{ instance.media_url }}"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen>
+				</iframe>
+			</div>
+		{% else %}
+			<p>Unsupported media type</p>
 		{% endif %}
 	</div>
 	{% endif %}
