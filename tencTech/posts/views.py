@@ -31,8 +31,6 @@ def posts_create(request):
 
 def posts_detail(request,slug=None):
     instance = get_object_or_404(Post,slug=slug)
-    print(request.user)
-    print(instance.intended_users.all())
     if (
         (not request.user.is_authenticated) or
         (instance.draft or instance.publish > timezone.now().date()) or 
@@ -53,7 +51,6 @@ def posts_detail(request,slug=None):
     form = CommentForm(request.POST or None, initial = initial_data)
     if form.is_valid() and request.user.is_authenticated:
         c_type = form.cleaned_data.get("content_type")
-        print(c_type)
         content_type = ContentType.objects.get(model="post")
         obj_id = form.cleaned_data.get("object_id")
         content_data = form.cleaned_data.get("content")
@@ -96,7 +93,6 @@ def posts_list(request):
         queryset_list = Post.objects.all()
     elif request.user.is_authenticated:
         queryset_list = Post.objects.filter(intended_users=request.user)
-        print(queryset_list)
     else:
         queryset_list = Post.objects.none()
     

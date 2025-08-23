@@ -19,12 +19,22 @@ from django.conf import settings
 from django.conf.urls import include
 from accounts import views
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/',views.login_view, name='login'),
     path('accounts/logout/',views.logout_view, name='logout'),
     path('accounts/register/',views.register_view, name='register'),
+     path(
+        'accounts/password_reset/',
+        auth_views.PasswordResetView.as_view(
+            email_template_name="registration/password_reset_email.txt",  # plain text
+            html_email_template_name="registration/password_reset_email.html",  # ✅ HTML template
+            subject_template_name="registration/password_reset_subject.txt",
+        ),
+        name='password_reset',
+    ),
     path('accounts/',include('django.contrib.auth.urls')),
     path('comments/', include(('comments.urls','comments'), namespace='comments')),
 ]
