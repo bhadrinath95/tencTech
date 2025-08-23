@@ -142,9 +142,11 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'softwaregurukulam@gmail.com'
-EMAIL_HOST_PASSWORD = 'Bhadri@1007'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'TENC TECH'
+
+EMAIL_HOST_USER = 'tenctech10c@gmail.com'  # your Gmail
+EMAIL_HOST_PASSWORD = 'arbo kcjz pzbm pzql'  # App password, not Gmail password
+
+DEFAULT_FROM_EMAIL = 'Bhadri Social <tenctech10c@gmail.com>'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

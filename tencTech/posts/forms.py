@@ -14,6 +14,7 @@ class PostForm(forms.ModelForm):
                 "is_html",
                 "media_url",
                 "media_type",
+                "intended_users",
                 "draft",
                 "publish"
             ]

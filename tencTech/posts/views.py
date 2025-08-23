@@ -29,11 +29,20 @@ def posts_create(request):
         }
     return render(request, 'post_form.html', context)
 
-def posts_detail(request,id=None):
-    instance = get_object_or_404(Post,id=id)
-    if instance.draft or instance.publish > timezone.now().date():
-        if not request.user.is_staff or not request.user.is_superuser:
-            raise Http404
+def posts_detail(request,slug=None):
+    instance = get_object_or_404(Post,slug=slug)
+    print(request.user)
+    print(instance.intended_users.all())
+    if (
+        (not request.user.is_authenticated) or
+        (instance.draft or instance.publish > timezone.now().date()) or 
+        (
+            not request.user.is_staff and
+            not request.user.is_superuser and
+            request.user not in instance.intended_users.all()
+        )
+    ):
+        raise Http404
     share_string = quote_plus(instance.content)
     
     initial_data = {
@@ -85,6 +94,11 @@ def posts_list(request):
     
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all()
+    elif request.user.is_authenticated:
+        queryset_list = Post.objects.filter(intended_users=request.user)
+        print(queryset_list)
+    else:
+        queryset_list = Post.objects.none()
     
     query  = request.GET.get("query")
     if query:
@@ -116,10 +130,10 @@ def posts_list(request):
         }
     return render(request, 'post_list.html', context)
 
-def posts_update(request, id =None):
+def posts_update(request, slug =None):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    instance = get_object_or_404(Post,id=id)
+    instance = get_object_or_404(Post,slug=slug)
     
     form = PostForm(request.POST or None, request.FILES or None, instance = instance)
     
@@ -136,10 +150,10 @@ def posts_update(request, id =None):
         }
     return render(request, 'post_form.html', context)
 
-def posts_delete(request , id= None):
+def posts_delete(request , slug= None):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    instance = get_object_or_404(Post,id=id)
+    instance = get_object_or_404(Post,slug=slug)
     instance.delete()
     messages.success(request, "Successfully Deleted")
     return redirect("posts:display")

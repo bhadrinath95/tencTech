@@ -25,7 +25,8 @@ class Post(models.Model):
         ('video', 'video'),
         ('youtube', 'youtube'),
     ]
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.DO_NOTHING, related_name="posts_created")
+    intended_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_received", blank=True)
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     media_url = models.CharField(max_length=120, null=True, blank=True)
