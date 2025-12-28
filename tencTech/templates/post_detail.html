@@ -4,14 +4,10 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block style %}
-h1 {
-	color: #777778;
-}
 .media-container {
     position: relative;
     width: 100%;
     max-width: 400px; /* or any fixed size */
-    aspect-ratio: 1 / 1; /* ensures square shape */
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -19,7 +15,6 @@ h1 {
 .media-container img,
 .media-container video {
     width: 100%;
-    height: 100%;
     object-fit: cover; /* crop to fill container while maintaining aspect */
     display: block;
 }
@@ -35,7 +30,6 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
 }
 {% endblock style %}
 
@@ -73,17 +67,15 @@ h1 {
 		</small>
 	</h1>
 
-	<p>
-	Published: {{ instance.publish }} 
-	</p>
 	{% if instance.user.get_full_name %}
 		<p>Author: {{ instance.user.get_full_name }} </p>
 	{% else %}
 		<p>Author: {{ instance.user }} </p>
 	{% endif %}
 	<p>
-		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+	Published: {{ instance.publish }} 
 	</p>
+
 	<hr />
 	<div class='row'>
 		<div class='col-sm-12'>

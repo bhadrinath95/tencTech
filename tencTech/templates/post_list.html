@@ -90,7 +90,8 @@
 				{{ obj.content | linebreaks | safe | truncatechars:120 }}
 			</p>
 			{% else %}
-			{{ obj.get_markdown | truncatechars_html:120 }}
+				{{ obj.content | safe | truncatechars_html:120 }}
+			</p>
 			{% endif %}
 			<p><a href='{% url "posts:detail" obj.slug %}' class="btn btn-primary" role="button">View</a></p>  
 		</div>

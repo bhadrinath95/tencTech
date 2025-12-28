@@ -22,6 +22,7 @@ def posts_create(request):
         instance = form.save(commit = False)
         instance.user = request.user
         instance.save()
+        form.save_m2m()
         messages.success(request, "Successfully created")
     
     context = {
@@ -136,6 +137,7 @@ def posts_update(request, slug =None):
     if form.is_valid():
         instance = form.save(commit = False)
         instance.save()
+        form.save_m2m()
         messages.success(request, "<a href='#'>Successfully</a> updated", extra_tags='Saved')
         return HttpResponseRedirect(instance.get_absolute_url())
         
@@ -153,38 +155,3 @@ def posts_delete(request , slug= None):
     instance.delete()
     messages.success(request, "Successfully Deleted")
     return redirect("posts:display")
-
-def display_rule(request, id=None):
-    if id:
-        rule = get_object_or_404(Rule, id=id)
-        return render(request, 'rules/display_single.html', {'rule': rule})
-    rules = Rule.objects.all()
-    return render(request, 'rules/display_all.html', {'rules': rules})
-
-def create_rule(request):
-    if request.method == 'POST':
-        form = RuleForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('posts:display_rule')
-    else:
-        form = RuleForm()
-    return render(request, 'rules/create.html', {'form': form})
-
-def delete_rule(request, id):
-    rule = get_object_or_404(Rule, id=id)
-    if request.method == 'POST':
-        rule.delete()
-        return redirect('posts:display_rule')
-    return render(request, 'rules/delete.html', {'rule': rule})
-
-def update_rule(request, id):
-    rule = get_object_or_404(Rule, id=id)
-    if request.method == 'POST':
-        form = RuleForm(request.POST, instance=rule)
-        if form.is_valid():
-            form.save()
-            return redirect('posts:display_rule')
-    else:
-        form = RuleForm(instance=rule)
-    return render(request, 'rules/update.html', {'form': form, 'rule': rule})
