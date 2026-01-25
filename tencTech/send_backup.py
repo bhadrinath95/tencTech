@@ -20,17 +20,17 @@ class Command(BaseCommand):
             return
 
         # tmp directory inside BASE_DIR
-        tmp_dir = base_dir / "tmp"
-        tmp_dir.mkdir(exist_ok=True)
+        # tmp_dir = base_dir / "tmp"
+        # tmp_dir.mkdir(exist_ok=True)
 
         # zip file path
-        zip_name = f"db_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
-        zip_path = tmp_dir / zip_name
+        # zip_name = f"db_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
+        # zip_path = tmp_dir / zip_name
 
         try:
             # Create zip
-            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-                zipf.write(db_path, arcname="db.sqlite3")
+            # with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+                # zipf.write(db_path, arcname="db.sqlite3")
 
             # Email
             email = EmailMessage(
